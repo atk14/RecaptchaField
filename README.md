@@ -43,7 +43,7 @@ class CreateNewForm extends ApplicationForm{
 		list($err,$values) = parent::clean();
 
 		// perhaps you may not want to have "spam" in the cleaned data
-		if(isset($values["spam"])){ unset($values["spam"]); }
+		if(is_array($values)){ unset($values["spam"]); }
 
 		return array($err,$values);
 	}
