@@ -1,0 +1,22 @@
+{
+        "name": "atk14/recaptcha-field",
+        "type": "library",
+        "description": "ATK14 form field for protecting forms against spam",
+        "keywords": ["atk14", "forms", "url", "field"],
+        "homepage": "https://github.com/atk14/RecaptchaField",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "Jaromir Tomek",
+                        "homepage": "https://github.com/yarri"
+                }
+        ],
+        "require": {
+                "php": ">=5.0.0"
+        },
+        "require-dev": {
+        },
+        "autoload": {
+                "classmap": ["src/app/fields","src/app/widgets"]
+        }
+}
