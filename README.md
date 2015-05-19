@@ -1,7 +1,7 @@
 RecaptchaField
 ==============
 
-An ATK14 form field for protecting your forms agains spam.
+An ATK14 form field for protecting your forms against spam.
 
 It uses https://www.google.com/recaptcha/intro/index.html
 
