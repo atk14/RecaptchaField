@@ -49,3 +49,9 @@ class CreateNewForm extends ApplicationForm{
 	}
 }
 ```
+
+Example of usage
+----------------
+
+The RecaptchaField is used in the [registration form](http://forum.atk14.net/en/users/create_new/) on [ATK14 Forum](http://forum.atk14.net/) for instance.
+
