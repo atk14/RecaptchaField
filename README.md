@@ -13,6 +13,8 @@ Just use the Composer:
 ```bash
 cd path/to/your/atk14/project/
 composer require atk14/recaptcha-field dev-master
+
+ln -s ../../vendor/atk14/recaptcha-field/src/app/fields/recaptcha_field.php app/fields/recaptcha_field.php
 ```
 
 You must define two constants in config/settings.php. Get their right values at https://www.google.com/recaptcha/admin#list
