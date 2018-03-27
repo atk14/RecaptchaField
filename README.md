@@ -11,7 +11,7 @@ Installation
 Just use the Composer:
 
     cd path/to/your/atk14/project/
-    composer require atk14/recaptcha-field dev-master
+    composer require atk14/recaptcha-field
 
     ln -s ../../vendor/atk14/recaptcha-field/src/app/fields/recaptcha_field.php app/fields/recaptcha_field.php
 
@@ -30,19 +30,32 @@ Usage in a form
     <?php
     // file: app/forms/users/create_new_form.php
     class CreateNewForm extends ApplicationForm{
+
       function set_up(){
-        $this->add_field("captcha",new RecaptchaField(array(
+        $this->add_field("firstname", new CharField([
+          "label" => "Firstname",
+          "max_length" => 200,
+        ]));
+
+        $this->add_field("lastname", new CharField([
+          "label" => "Lastname",
+          "max_length" => 200,
+        ]));
+
+        // other fields
+
+        $this->add_field("captcha",new RecaptchaField([
           "label" => "Spam protection"
-        )));
+        ]));
       }
 
       function clean(){
         list($err,$values) = parent::clean();
 
-        // perhaps you may not want to have "spam" in the cleaned data
-        if(is_array($values)){ unset($values["spam"]); }
+        // perhaps you may not want to have "captcha" in the cleaned data
+        if(is_array($values)){ unset($values["captcha"]); }
 
-        return array($err,$values);
+        return [$err,$values];
       }
     }
 
@@ -50,7 +63,6 @@ Example of usage
 ----------------
 
 The RecaptchaField is used in the [registration form](http://forum.atk14.net/en/users/create_new/) on [ATK14 Forum](http://forum.atk14.net/) for instance.
-
 
 License
 -------
