@@ -2,7 +2,7 @@
         "name": "atk14/recaptcha-field",
         "type": "library",
         "description": "ATK14 form field for protecting forms against spam",
-        "keywords": ["atk14", "forms", "url", "field"],
+        "keywords": ["captcha", "recaptcha", "field", "forms", "atk14"],
         "homepage": "https://github.com/atk14/RecaptchaField",
         "license": ["MIT"],
         "authors": [
