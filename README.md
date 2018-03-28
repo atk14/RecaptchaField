@@ -1,9 +1,9 @@
 RecaptchaField
 ==============
 
-An ATK14 form field for protecting your forms against spam.
+RecaptchaField is a field for protecting forms against spam in ATK14 applications.
 
-It uses https://www.google.com/recaptcha/intro/index.html
+It uses reCAPTCHA v2 from Google (see https://www.google.com/recaptcha/intro/index.html)
 
 Installation
 ------------
@@ -12,8 +12,6 @@ Just use the Composer:
 
     cd path/to/your/atk14/project/
     composer require atk14/recaptcha-field
-
-    ln -s ../../vendor/atk14/recaptcha-field/src/app/fields/recaptcha_field.php app/fields/recaptcha_field.php
 
 You must define two constants in config/settings.php. Get their right values at https://www.google.com/recaptcha/admin#list
 
@@ -24,12 +22,19 @@ You must define two constants in config/settings.php. Get their right values at 
     define("RECAPTCHA_SITE_KEY","fksjfu2094389SAKJDPOSAIIaskalkslamcbuyid");
     define("RECAPTCHA_SECRET_KEY","pwofe994883eiDJKHFISIYTTSSSSSkfdt7poieqnx");
 
-Usage in a form
----------------
+Optionally you can symlink the RecaptchaField files into your project:
+
+    ln -s ../../vendor/atk14/recaptcha-field/src/app/fields/recaptcha_field.php app/fields/recaptcha_field.php
+    ln -s ../../vendor/atk14/recaptcha-field/src/app/widgets/recaptcha_widget.php app/widgets/recaptcha_widget.php
+
+Usage in a ATK14 application
+----------------------------
+
+In a form:
 
     <?php
     // file: app/forms/users/create_new_form.php
-    class CreateNewForm extends ApplicationForm{
+    class CreateNewForm extends ApplicationForm {
 
       function set_up(){
         $this->add_field("firstname", new CharField([
@@ -59,6 +64,40 @@ Usage in a form
       }
     }
 
+In a template (a shared template from the [Atk14Skelet](https://github.com/atk14/Atk14Skelet) is used):
+
+    <h1>User Registration</h1>
+
+    {form}
+
+      <fieldset>
+        {render partial="shared/form_field" fields="firstname,lastname,..."}
+      </fieldset>
+
+      <fieldset>
+        {render partial="shared/form_field" fields="captcha"}
+      </fieldset>
+
+      <button type="submit">Register</button>
+
+    {/form}
+
+In a controller:
+
+    <?php
+    // file: app/controllers/users_controller.php
+    class UsersController extends ApplicationController {
+      
+      function create_new(){
+        if($this->request->post() && ($values = $this->form->validate($this->params))){
+          // There's no need to care about the $values["captcha"] since it was unset in CreateNewForm::clean()
+          User::CreateNewRecord($values);
+          $this->flash->success("Your registration has been successfully performed");
+          $this->_redirect_to("main/index");
+        }
+      }
+    }
+
 Example of usage
 ----------------
 
@@ -67,4 +106,4 @@ The RecaptchaField is used in the [registration form](http://forum.atk14.net/en/
 License
 -------
 
-UrlField is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
+RecaptchaField is free software distributed [under the terms of the MIT license](http://www.opensource.org/licenses/mit-license)
