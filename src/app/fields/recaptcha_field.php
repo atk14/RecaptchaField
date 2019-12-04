@@ -6,14 +6,14 @@
 class RecaptchaField extends CharField{
 	function __construct($options = array()){
 		$options = array_merge(array(
-			"widget" => new RecaptchaWidget()
+			"widget" => new RecaptchaWidget(),
+			"error_messages" => array(
+				"required" => _("Please try to solve the test. It is important for us to be sure that we are communicating with a human."),
+				"invalid" => _("The test was not successful. Please try it again."),
+				"service_unavailable" => _("We are experiencing some technical issue during the communication with Google. Please try it later."),
+			)
 		),$options);
 		parent::__construct($options);
-		$this->update_messages(array(
-			"required" => _("Please try to solve the test. It is important for us to be sure that we are communicating with a human."),
-			"invalid" => _("The test was not successful. Please try it aganin."),
-			"service_unavailable" => _("We are experiencing some technical issue during the communication with Google. Please try it later."),
-		));
 
 		if(!defined("RECAPTCHA_SITE_KEY") || !defined("RECAPTCHA_SECRET_KEY")){
 			throw new Exception("To use RecaptchaField you must define RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY as it is mentioned on https://github.com/atk14/RecaptchaField");

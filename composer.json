@@ -12,7 +12,8 @@
                 }
         ],
         "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.3.0",
+                "atk14/url-fetcher": "^1.4"
         },
         "require-dev": {
                 "atk14/tester": "*",
