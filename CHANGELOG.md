@@ -3,6 +3,12 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+[0.1.2] - 2019-12-04
+--------------------
+
+- Typo
+- Exception is thrown when configuration constants are missing
+
 [0.1.1] - 2019-11-06
 --------------------
 
