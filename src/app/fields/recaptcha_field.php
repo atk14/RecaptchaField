@@ -16,7 +16,7 @@ class RecaptchaField extends CharField{
 		));
 
 		if(!defined("RECAPTCHA_SITE_KEY") || !defined("RECAPTCHA_SECRET_KEY")){
-			die ("To use RecaptchaField you must define RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY as it is mentioned on https://github.com/atk14/RecaptchaField");
+			throw new Exception("To use RecaptchaField you must define RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY as it is mentioned on https://github.com/atk14/RecaptchaField");
 		}
 	}
 
